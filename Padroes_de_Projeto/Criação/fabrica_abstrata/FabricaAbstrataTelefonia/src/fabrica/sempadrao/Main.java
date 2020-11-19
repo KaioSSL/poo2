@@ -23,20 +23,19 @@ public class Main {
         int telefone = Integer.parseInt(JOptionPane.showInputDialog("Telefone?"));
         String texto = JOptionPane.showInputDialog("Mensagem");
         Mensagem msg = new Mensagem(texto);
-        EnvioSMS envio = null;
-        Cobranca cobranca = null;
-        if (escolha.equalsIgnoreCase("tim")) {
-            envio = new EnvioSMSTim("assincrono");
-            if (envio.enviar(msg, telefone)) {
-                cobranca = new CobrancaTim();
-                cobranca.cobrar(telefone);
-            } else if (escolha.equalsIgnoreCase("vivo")) {
-                envio = new EnvioSMSVivo();
-                if (envio.enviar(msg, telefone)) {
-                    cobranca = new CobrancaTim();
-                    cobranca.cobrar(telefone);
-                }
-            }
+        FabricaAbstrataEnvios fabrica = null;
+        if(escolha.equalsIgnoreCase("tim")){
+            fabrica = new FabricaTim();
+        }else if(escolha.equalsIgnoreCase("vivo")){
+            fabrica = new FabricaVivo();
         }
+        EnvioSMS sms = fabrica.criaEnvioSMS();
+        if(sms.enviar(msg, telefone)){
+            Cobranca cobranca = fabrica.criaCobranca();
+            cobranca.cobrar(telefone);
+        }
+        /*acredito ser isso*/
+        /*Primeiro eu defino a fabrica geral, e a partir dela eu atribuo a classe especifica*/
+        
     }
 }
