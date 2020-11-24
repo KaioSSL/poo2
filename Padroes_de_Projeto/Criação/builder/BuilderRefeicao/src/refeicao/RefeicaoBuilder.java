@@ -12,9 +12,11 @@ public abstract class RefeicaoBuilder {
     public void adicionarSuco(String sabor){                                
         refeicao.setBebida(new Suco(sabor));        
     }   
-       
     public void adicionarRefrigerante(String sabor){
         refeicao.setBebida(new Refrigerante(sabor));        
-    }   
+    } 
+    public void adicionarBatata(Integer quantidade){
+        refeicao.setBatata(new Batata(quantidade));        
+    } 
     
 }
