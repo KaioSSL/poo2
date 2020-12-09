@@ -15,6 +15,7 @@ public class RecuperarUsuarioSerializado {
             in.close();
 
             System.out.println("Deserializando Usuario...");
+            System.out.println("Id: " + user.getId());
             System.out.println("Nome: " + user.getNome());
             System.out.println("Email: " + user.getEmail());
             System.out.println("Senha: " + user.getSenha());

@@ -8,7 +8,15 @@ public class Usuario implements Serializable{
     String nome;
     private String email;
     private String senha;
-    
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public void setNome(String nome) {
         this.nome = nome;

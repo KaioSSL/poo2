@@ -9,6 +9,7 @@ public class SaveUsuarioSerializado {
         String current = new java.io.File( "." ).getCanonicalPath();        
 
         Usuario usuario = new Usuario();
+        usuario.setId(1);
         usuario.setEmail("joao@email.com");        
         usuario.setNome("joao");
         usuario.setSenha("password");

@@ -21,7 +21,8 @@ public class SaveMensagemSerializada {
 
         Mensagem msg = new Mensagem();
         msg.setTexto("Atividade POO top");
-        msg.setNome_usuario("Kaio Bolado Demais");
+        msg.setId_usuario(1);
+        msg.setId(1);
         
         
         FileOutputStream fileSerializado = new FileOutputStream( 

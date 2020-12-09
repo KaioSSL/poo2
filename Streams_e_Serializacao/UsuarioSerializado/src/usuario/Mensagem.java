@@ -5,11 +5,6 @@
  */
 package usuario;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
@@ -17,15 +12,24 @@ import java.io.Serializable;
  * @author kaiof
  */
 public class Mensagem implements Serializable {
-    private String texto;
-    private String nome_usuario;
+    private int id;
 
-    public String getNome_usuario() {
-        return nome_usuario;
+    public int getId() {
+        return id;
     }
 
-    public void setNome_usuario(String nome_usuario) {
-        this.nome_usuario = nome_usuario;
+    public void setId(int id) {
+        this.id = id;
+    }
+    private String texto;
+    private int id_usuario;
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int nome_usuario) {
+        this.id_usuario = nome_usuario;
     }
 
     public String getTexto() {

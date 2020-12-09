@@ -24,8 +24,9 @@ public class RecuperarMensagemSerializada {
             in.close();
 
             System.out.println("Deserializando Mensagem...");
+            System.out.println("Id: " + msg.getId());
             System.out.println("Texto: " + msg.getTexto());
-            System.out.println("Nome: " + msg.getNome_usuario());
+            System.out.println("Id Usuário: " + msg.getId_usuario());
 
         }
     }
