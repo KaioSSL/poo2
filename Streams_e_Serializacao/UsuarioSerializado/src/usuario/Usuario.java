@@ -7,9 +7,8 @@ public class Usuario implements Serializable{
 
     String nome;
     private String email;
-    private String senha;   
-   
-
+    private String senha;
+    
     
     public void setNome(String nome) {
         this.nome = nome;
