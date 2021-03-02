@@ -11,6 +11,7 @@ public abstract class AbstractPagamentoHandler implements PagamentoHandler {
     public void setNextHandler(PagamentoHandler handler) {
         this.nextPagamentoHandler = handler;
     }
+    @Override
     public void processHander(List lista, int valor) {                
         if(lista.contains(getTipoPagamento()))
               valor = handlePagamento(valor);                               
