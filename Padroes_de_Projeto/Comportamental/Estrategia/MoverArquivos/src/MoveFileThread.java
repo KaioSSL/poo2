@@ -1,35 +1,38 @@
-
-/*
-     Copia arquivos de uma pasta para outra pasta
- */
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.channels.FileChannel;
 
-/**
- *
- * @author felipe
- */
-public class MoveFile {
+public class MoveFileThread implements Runnable{
+	private static File listaFiles[] = null;
+	@Override
+	public void run(){
+		try{
+			listaFiles = MoveFile.getSingleTonListaFiles(); //le arquivos do diretorio e coloca na listaFiles
+	        for(int i = 0; i < listaFiles.length; i++) {
+	            File origem = new File(listaFiles[i].getAbsolutePath());
+	            String destinationFile = listaFiles[i].getAbsolutePath();
+	            destinationFile = destinationFile.replace("origem", "destino");
+	            copyFile(origem, new File(destinationFile));
+	        }
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    private static File listaFiles[] = null;
 
     public static void main(String args[]) throws IOException, InterruptedException {
-
         final long startTime = System.currentTimeMillis();// tempo incial
-        listaFiles = MoveFile.getSingleTonListaFiles(); //le arquivos do diretorio e coloca na listaFiles                
         System.out.println("Iniciando copiar de arquivos");
-        
-        for(int i = 0; i < listaFiles.length; i++) {
-            File origem = new File(listaFiles[i].getAbsolutePath());
-            String destinationFile = listaFiles[i].getAbsolutePath();
-            destinationFile = destinationFile.replace("origem", "destino");
-            copyFile(origem, new File(destinationFile));
-        }      
-        
+        Runnable run1 = new MoveFileThread();
+        Thread t1 = new Thread(run1);
+        Thread t2 = new Thread(run1);
+        t1.start();
+        t2.start();
         final long elapsedTimeMillis = System.currentTimeMillis() - startTime; //tempo total de execução do programa
-        System.out.println("Time:" + elapsedTimeMillis);
+        System.out.println("Time:"+ elapsedTimeMillis);
     }
-    
     public static synchronized File[] getSingleTonListaFiles() throws IOException
     {        
         if(listaFiles == null){
@@ -62,7 +65,6 @@ public class MoveFile {
         if (destination != null) {
             destination.close();
         }
-    }
-
-   
+    }   
 }
+
